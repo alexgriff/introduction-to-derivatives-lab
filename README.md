@@ -1,24 +1,22 @@
 
-# Derivatives of Linear Functions Lab
-
-## Testing
+# Derivatives of Linear Functions Lab- Update -hjghgh
 
 ### Introduction: Start here
 
-In this lab, we will practice our knowledge of derivatives. Remember that our key formula for derivatives, is
-$f'(x) = \frac{\Delta y}{\Delta x} =  \frac{f(x + \Delta x) - f(x)}{\Delta x}$.  So in driving towards this formula, we will do the following:
+In this lab, we will practice our knowledge of derivatives. Remember that our key formula for derivatives, is 
+$f'(x) = \frac{\Delta y}{\Delta x} =  \frac{f(x + \Delta x) - f(x)}{\Delta x}$.  So in driving towards this formula, we will do the following: 
 
 1. Learn how to represent linear and nonlinear functions in code.  
 2. Then because our calculation of a derivative relies on seeing the output at an initial value and the output at that value plus delta x, we need an `output_at` function.  
-3. Then we will be able to code the $\Delta f$ function that sees the change in output between the initial x and that initial x plus the $\Delta x$
-4. Finally, we will calculate the derivative at a given x value, `derivative_at`.
+3. Then we will be able to code the $\Delta f$ function that sees the change in output between the initial x and that initial x plus the $\Delta x$ 
+4. Finally, we will calculate the derivative at a given x value, `derivative_at`. 
 
-### Learning objectives
+### Learning objectives 
 
 For this first section, you should be able to answer all of the question with an understanding of our definition of a derivative:
 
 1. Our intuitive explanation that a derivative is the instantaneous rate of change of a function
-2. Our mathematical definition is that
+2. Our mathematical definition is that 
 
 $f'(x) = \frac{\Delta y}{\Delta x} =  \frac{f(x + \Delta x) - f(x)}{\Delta x}$
 
@@ -45,7 +43,7 @@ tuple[0] = 7
 # TypeError: 'tuple' object does not support item assignment
 ```
 
-Take the following function as an example:
+Take the following function as an example: 
 
 $$f(x) = 4x^2 + 4x - 10 $$
 
@@ -66,19 +64,19 @@ Ok, so give this a shot. Write $ f(x) = 4x^3 + 11x^2 $ as a list of terms.  Assi
 four_x_cubed_plus_eleven_x_squared = [(4, 3), (11, 2)]
 ```
 
-#### 2. Evaluating a function at a specific point
+#### 2. Evaluating a function at a specific point 
 
 Now that we can represent a function in code, let's write a Python function called `term_output` that can evaluate what a single term equals at a value of $x$.  
 
 * For example, when $x = 2$, the term $3x^2 = 3*2^2 = 12 $.  
-* So we represent $3x^2$ in code as `(3, 2)`, and:
+* So we represent $3x^2$ in code as `(3, 2)`, and: 
 * `term_output((3, 2), 2)` should return 12
 
 
 
 ```python
 def term_output(term, input_value):
-    return term[0]*input_value**term[1]
+    pass
 ```
 
 
@@ -95,7 +93,7 @@ term_output((3, 2), 2) # 12
 
 > **Hint:** To raise a number to an exponent in python, like 3^2 use the double star, as in:
 ```python
-3**2 # 9
+3**2 # 9 
 ```
 
 Now write a function called `output_at`, when passed a `list_of_terms` and a value of $x$, calculates the value of the function at that value.  
@@ -107,12 +105,13 @@ Now write a function called `output_at`, when passed a `list_of_terms` and a val
 def output_at(list_of_terms, x_value):
     outputs = list(map(lambda term: term_output(term, x_value), list_of_terms))
     return sum(outputs)
+
 ```
 
 
 ```python
 three_x_squared_minus_eleven = [(3, 2), (-11, 0)]
-output_at(three_x_squared_minus_eleven, 2) # 1
+output_at(three_x_squared_minus_eleven, 2) # 1 
 output_at(three_x_squared_minus_eleven, 3) # 16
 ```
 
@@ -190,7 +189,7 @@ plot([four_x_plus_fifteen_trace])
 
 Ok, time for what we are here for, derivatives.  Remember that the derivative is the instantaneous rate of change of a function, and is expressed as:
 
-$$ f'(x) = \frac{\Delta f}{\Delta x}  = \frac{f(x + \Delta x) - f(x)}{\Delta x}  $$
+$$ f'(x) = \frac{\Delta f}{\Delta x}  = \frac{f(x + \Delta x) - f(x)}{\Delta x}  $$ 
 
 #### Writing a function for $\Delta f$
 
@@ -205,7 +204,7 @@ four_x_plus_fifteen = [(4, 1), (15, 0)]
 
 ```python
 def delta_f(list_of_terms, x_value, delta_x):
-    return output_at(list_of_terms, x_value + delta_x) - output_at(list_of_terms, x_value)
+    pass
 ```
 
 
@@ -231,7 +230,7 @@ Let's show $\Delta f$ and $\Delta x$ graphically.
 def delta_f_trace(list_of_terms, x_value, delta_x):
     initial_f = output_at(list_of_terms, x_value)
     delta_y = delta_f(list_of_terms, x_value, delta_x)
-    trace =  trace_values(x_values=[x_value + delta_x, x_value + delta_x],
+    trace =  trace_values(x_values=[x_value + delta_x, x_value + delta_x], 
                           y_values=[initial_f, initial_f + delta_y], mode = 'lines',
                           name = 'delta f = ' + str(delta_y))
     return trace
@@ -247,11 +246,7 @@ Let's add another function that shows the delta x.
 
 ```python
 def delta_x_trace(list_of_terms, x_value, delta_x):
-    initial_f = output_at(list_of_terms, x_value)
-    trace = trace_values(x_values=[x_value, x_value + delta_x],
-                        y_values=[initial_f, initial_f], mode = 'lines',
-                        name = 'delta x = ' + str(delta_x))
-    return trace
+    pass
 ```
 
 
@@ -309,7 +304,7 @@ def derivative_trace(list_of_terms, x_value, line_length = 4, delta_x = .01):
 
 > Our `derivative_trace` function takes as arguments `list_of_terms`, `x_value`, which is where our line should be tangent to our function, `line_length` as the length of our tangent line, and `delta_x` which is our $\Delta x$.
 
-> The return value of `derivative_trace` is a dictionary that represents tangent line at that values of $x$.  It uses the `derivative_of` function you wrote above to calculate the slope of the tangent line.  Once the slope of the tangent is calculated, we stretch out this tangent line by the `line_length` provided.  The beginning x value is just the midpoint minus the `line_length/2` and the ending $x$ value is midpoint plus the `line_length/2`.  Then we calculate our $y$ endpoints by starting at the $y$ along the function, and having them ending at `line_length/2*slope` in either direction.
+> The return value of `derivative_trace` is a dictionary that represents tangent line at that values of $x$.  It uses the `derivative_of` function you wrote above to calculate the slope of the tangent line.  Once the slope of the tangent is calculated, we stretch out this tangent line by the `line_length` provided.  The beginning x value is just the midpoint minus the `line_length/2` and the ending $x$ value is midpoint plus the `line_length/2`.  Then we calculate our $y$ endpoints by starting at the $y$ along the function, and having them ending at `line_length/2*slope` in either direction. 
 
 
 ```python
@@ -339,7 +334,7 @@ def delta_traces(list_of_terms, x_value, line_length = 4, delta_x = .01):
     return [tangent, delta_f_line, delta_x_line]
 ```
 
-Below we can plot our trace of the function as well
+Below we can plot our trace of the function as well 
 
 
 ```python
@@ -376,7 +371,7 @@ plot_figure(comapared_four_x_plut_fifteen )
 
     This is the format of your plot grid:
     [ (1,1) x1,y1 ]  [ (1,2) x2,y2 ]
-
+    
 
 
 
